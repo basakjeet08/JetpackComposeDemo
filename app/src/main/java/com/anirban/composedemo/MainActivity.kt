@@ -4,40 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.anirban.composedemo.composables.Conversation
+import com.anirban.composedemo.models.DataProvider
 import com.anirban.composedemo.ui.theme.JetpackComposeDemoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // This setContent sets the UI for the Activity
         setContent {
+
+            // This is the defined theme for this app and it is defined in ui.theme package
             JetpackComposeDemoTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
+
+                // Making a surface Container for the App which will contain the whole UI
+                Surface(modifier = Modifier.fillMaxSize()) {
+
+                    // Calling the Composable function which contains the parts of the UI
+                    Conversation(messages = DataProvider.conversationSample)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    JetpackComposeDemoTheme {
-        Greeting("Android")
     }
 }
